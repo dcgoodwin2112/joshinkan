@@ -109,6 +109,17 @@ section:last-of-type { border-bottom: none; }
 .site-footer ul { list-style: none; display: grid; gap: 6px; }
 .site-footer .brand-footer { font-family: var(--serif); font-size: 32px; font-weight: 400; margin-bottom: 12px; color: var(--cream); }
 .copyright { grid-column: 1 / -1; padding-top: 32px; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); font-family: var(--sans); font-size: 13px; color: var(--sage-soft); display: flex; justify-content: space-between; letter-spacing: 0.02em; }
+.instructor-card .photo img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.hero-image img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.split .image { overflow: hidden; }
+.split .image img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.split .image > span { position: relative; z-index: 1; }
+.split .image.tall { aspect-ratio: 2/3; }
+.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 56px; }
+.paths h3 { font-family: var(--serif); font-size: 28px; color: var(--forest); margin-bottom: 16px; font-weight: 500; }
+.feature-image { margin: 0 0 56px; }
+.feature-image img { display: block; width: 100%; height: auto; }
+.feature-image figcaption { font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--char-soft); margin-top: 16px; }
 @media (max-width: 1024px) {
   .shell { padding: 0 32px; }
   .hero { grid-template-columns: 1fr; gap: 48px; }
@@ -134,15 +145,6 @@ section:last-of-type { border-bottom: none; }
   .contact-grid { grid-template-columns: 1fr; }
   .site-footer { grid-template-columns: 1fr; padding: 48px 28px 28px; }
   .copyright { flex-direction: column; gap: 8px; }
+  section { padding: 64px 0 48px; }
+  .section-num { position: static; display: block; margin-bottom: 16px; font-size: 15px; }
 }
-.instructor-card .photo img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-.hero-image img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.split .image { overflow: hidden; }
-.split .image img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.split .image > span { position: relative; z-index: 1; }
-.split .image.tall { aspect-ratio: 2/3; }
-.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 56px; }
-.paths h3 { font-family: var(--serif); font-size: 28px; color: var(--forest); margin-bottom: 16px; font-weight: 500; }
-.feature-image { margin: 0 0 56px; }
-.feature-image img { display: block; width: 100%; height: auto; }
-.feature-image figcaption { font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--char-soft); margin-top: 16px; }
