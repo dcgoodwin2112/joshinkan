@@ -1,0 +1,62 @@
+---
+import KazeLayout from '~/layouts/KazeLayout.astro';
+import InstructorList from '~/components/kaze/InstructorList.astro';
+import { Image } from 'astro:assets';
+import bokkenPractice from '~/assets/boken-practice1.png';
+---
+
+<KazeLayout
+  title="About: Joshinkan Dojo"
+  description="About the Center for Aikido Study, the practice of Aikido, and our volunteer instructors."
+>
+  <div class="page-head">
+    <h1>About the <em>dojo</em>.</h1>
+    <div class="meta"><strong>Page</strong><br />02 / Our story, our practice, our instructors</div>
+  </div>
+
+  <section>
+    <span class="section-num">01 / Story</span>
+    <div class="split">
+      <div>
+        <span class="eyebrow">Our story</span>
+        <h2 class="section-title">A practice rooted in tradition.</h2>
+        <div class="prose">
+          <p>The Center for Aikido Study, also called Joshinkan Dojo, has been operating under the guidance of Sensei Jon Whatley since 2020. The dojo was founded by Sensei Bill Bunn, Rokudan.</p>
+          <p>We are a member of the <strong>Aikido Association of America</strong>, and affiliated with both the Aikikai Foundation and World Aikido Headquarters in Tokyo, Japan. Our lineage traces to Fumio Toyoda Shihan.</p>
+          <p>The dojo is a 501(c) nonprofit. All instructors volunteer their time, and all dues go directly to maintaining the dojo and the practice.</p>
+        </div>
+      </div>
+      <div class="image forest">
+        <Image src={bokkenPractice} alt="Bokken practice" loading="lazy" widths={[600, 1200]} sizes="(min-width: 1024px) 50vw, 100vw" />
+        <span>Bokken practice</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-num">02 / Aikido</span>
+    <span class="eyebrow">The art</span>
+    <h2 class="section-title">What is <em>Aikido</em>?</h2>
+    <div class="prose">
+      <p>Aikido is a <strong>budo</strong>, a martial way, drawn from traditional Japanese martial arts. In Aikido we put great focus on movement, balance, posture, and your state of mind, and how this influences your connection with others.</p>
+      <p>In Aikido we look inwards to make changes in ourselves, so we can lead others to change. Instruction is focused both on the basic principles of Aikido and their applications in technique. Above all, it is taught at your level of ability.</p>
+    </div>
+  </section>
+
+  <div class="pull">Ai. Ki. Do. The way of harmonizing with spirit and energy.<cite>合氣道 · etymology</cite></div>
+
+  <section>
+    <span class="section-num">03 / Instructors</span>
+    <span class="eyebrow">Volunteer faculty</span>
+    <h2 class="section-title">The <em>instructors</em>.</h2>
+    <p class="prose" style="margin-bottom: 56px;">All instructors at Joshinkan Dojo volunteer their time. Each holds advanced rank in the Aikido Association of America lineage.</p>
+    <InstructorList />
+  </section>
+
+  <section>
+    <span class="eyebrow">Ready to train</span>
+    <h2 class="section-title">Visit the dojo.</h2>
+    <p class="prose">Class times, dues, location, and the path to membership are all on one page.</p>
+    <p style="margin-top: 40px;"><a href="/kaze/visit" class="cta clay">Plan your visit</a></p>
+  </section>
+</KazeLayout>

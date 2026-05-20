@@ -1,0 +1,78 @@
+---
+import KazeLayout from '~/layouts/KazeLayout.astro';
+import Schedule from '~/components/kaze/Schedule.astro';
+import Map from '~/components/Map.astro';
+import { Image } from 'astro:assets';
+import toyodaSeminar from '~/assets/toyoda-seminar.jpg';
+import { CONTACT, LINKS, DUES } from '~/data/site';
+---
+
+<KazeLayout
+  title="Visit: Joshinkan Dojo"
+  description="Class schedule, dues, location, and contact information for Joshinkan Dojo in Cary, NC."
+>
+  <div class="page-head">
+    <h1>Plan your <em>visit</em>.</h1>
+    <div class="meta"><strong>Page</strong><br />03 / Schedule, dues, location, contact</div>
+  </div>
+
+  <section>
+    <span class="section-num">01 / Schedule</span>
+    <span class="eyebrow">Weekly classes</span>
+    <h2 class="section-title">Three nights, plus open mat.</h2>
+    <Schedule title="Class times" />
+    <p style="margin-top: 32px; font-family: var(--serif); font-style: italic; color: var(--char-soft); font-size: 20px;">Stop by anytime during regularly scheduled classes. Visitors are always welcome to observe.</p>
+  </section>
+
+  <section>
+    <span class="section-num">02 / Membership</span>
+    <span class="eyebrow">How to begin</span>
+    <h2 class="section-title">Two paths to start.</h2>
+    <div class="paths">
+      <div>
+        <h3>If you are new to Aikido</h3>
+        <div class="prose">
+          <p>Join for one month and attend as many classes as you can. You will be paired with an instructor who will work with you on basic movements and how to safely train.</p>
+          <p>If after the introductory month you wish to continue, we set up your membership.</p>
+        </div>
+      </div>
+      <div>
+        <h3>If you have trained before</h3>
+        <div class="prose">
+          <p>Please meet with Sensei Whatley about membership. If you are visiting the area and currently train at a dojo, you are most welcome to come visit us and train.</p>
+        </div>
+      </div>
+    </div>
+    <figure class="feature-image">
+      <Image src={toyodaSeminar} alt="Fumio Toyoda Shihan seminar" loading="lazy" widths={[800, 1200, 1600]} sizes="(min-width: 1200px) 1100px, 100vw" />
+    </figure>
+    <div class="info-row">
+      <div class="info"><h3>Monthly dues</h3><p class="big">${DUES.monthly}</p><p>Per month. No contracts.</p></div>
+      <div class="info"><h3>Intro period</h3><p class="big">{DUES.introMonths} month</p><p>Attend as many classes as you can.</p></div>
+      <div class="info"><h3>What to wear</h3><p style="font-family: var(--serif); font-size: 22px; color: var(--forest); margin: 12px 0; font-style: italic;">Loose, comfortable clothing.</p><p>A traditional <em>dogi</em> can be acquired once you decide to continue.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-num">03 / Location</span>
+    <span class="eyebrow">Find us</span>
+    <h2 class="section-title">{CONTACT.address.street}, Cary.</h2>
+    <div class="prose">
+      <p>The dojo is located inside <strong>Master Chang's Taekwondo</strong>, just off High House Road in Cary. Parking is available on site.</p>
+      <p>Five minutes from downtown Cary, twenty from downtown Raleigh.</p>
+    </div>
+    <div class="map-block"><Map /></div>
+  </section>
+
+  <section>
+    <span class="section-num">04 / Contact</span>
+    <span class="eyebrow">Reach the dojo</span>
+    <h2 class="section-title">Get in touch.</h2>
+    <div class="contact-grid">
+      <div class="contact-item"><div class="label">Address</div><div class="value">{CONTACT.address.street}<br />{CONTACT.address.cityStateZip}</div></div>
+      <div class="contact-item"><div class="label">Phone</div><div class="value"><a href={`tel:${CONTACT.phoneTel}`}>{CONTACT.phone}</a></div></div>
+      <div class="contact-item"><div class="label">Email</div><div class="value"><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></div></div>
+      <div class="contact-item"><div class="label">Social</div><div class="value"><a href={LINKS.facebook} target="_blank" rel="noopener">Facebook</a></div></div>
+    </div>
+  </section>
+</KazeLayout>

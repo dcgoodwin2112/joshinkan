@@ -1,0 +1,45 @@
+---
+import YoruLayout from '~/layouts/YoruLayout.astro';
+import InstructorList from '~/components/yoru/InstructorList.astro';
+---
+
+<YoruLayout
+  title="About: Joshinkan Dojo"
+  description="About the Center for Aikido Study, the practice of Aikido, and our volunteer instructors."
+>
+  <div class="page-head">
+    <div class="meta-row"><span>Page 02 of 03</span><span class="amber">About</span><span>Story, practice, instructors</span></div>
+    <h1><em>About</em> the dojo.</h1>
+    <p class="subtitle">Who we are, what we practice, and the people who teach.</p>
+  </div>
+
+  <section>
+    <div class="sec-header"><span class="sec-code">0.1 / Story</span><h2 class="section-title">A practice rooted in <em>tradition</em>.</h2></div>
+    <div class="prose">
+      <p>The Center for Aikido Study, also called Joshinkan Dojo, has been operating under the guidance of Sensei Jon Whatley since 2020. The dojo was founded by Sensei Bill Bunn, Rokudan.</p>
+      <p>We are a member of the <strong>Aikido Association of America</strong>, and affiliated with both the Aikikai Foundation and World Aikido Headquarters in Tokyo, Japan. Our lineage traces to Fumio Toyoda Shihan.</p>
+      <p>The dojo is a 501(c) nonprofit. All instructors volunteer their time, and all dues go directly to maintaining the dojo and the practice.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-header"><span class="sec-code">0.2 / Aikido</span><h2 class="section-title">What is <em>Aikido</em>?</h2></div>
+    <div class="prose">
+      <p>Aikido is a <em>budo</em>, a martial way, drawn from traditional Japanese martial arts. In Aikido we put great focus on movement, balance, posture, and your state of mind, and how this influences your connection with others.</p>
+      <p>In Aikido we look inwards to make changes in ourselves, so we can lead others to change. Instruction is focused both on the basic principles of Aikido and their applications in technique. Above all, it is taught at your level of ability.</p>
+    </div>
+    <div class="pull">Ai. Ki. Do. The way of harmonizing with spirit and energy.<cite>合氣道 · etymology</cite></div>
+  </section>
+
+  <section>
+    <div class="sec-header"><span class="sec-code">0.3 / Instructors</span><h2 class="section-title">The <em>instructors</em>.</h2></div>
+    <p class="prose" style="margin-bottom: 32px;">All instructors at Joshinkan Dojo volunteer their time. Each holds advanced rank in the Aikido Association of America lineage.</p>
+    <InstructorList />
+  </section>
+
+  <section>
+    <div class="sec-header"><span class="sec-code">0.4 / Begin</span><h2 class="section-title">Ready to <em>visit</em>?</h2></div>
+    <p class="prose">Class times, dues, location, and the path to membership are all on one page.</p>
+    <p style="margin-top: 40px;"><a href="/yoru/visit" class="cta">Plan your visit</a></p>
+  </section>
+</YoruLayout>

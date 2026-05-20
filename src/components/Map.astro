@@ -1,0 +1,24 @@
+---
+import { CONTACT } from '~/data/site';
+
+const query = encodeURIComponent(`${CONTACT.address.street}, ${CONTACT.address.cityStateZip}`);
+// Google Maps no-API-key embed centered on 35.7885385,-78.8263641.
+const src = `https://maps.google.com/maps?q=${query}&ll=35.7885385,-78.8263641&z=16&output=embed`;
+---
+
+<iframe
+  src={src}
+  title={`Map: ${CONTACT.address.street}, ${CONTACT.address.cityStateZip}`}
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  allowfullscreen
+></iframe>
+
+<style>
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+</style>
