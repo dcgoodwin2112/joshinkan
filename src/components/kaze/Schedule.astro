@@ -1,0 +1,19 @@
+---
+import { SCHEDULE } from '~/data/site';
+
+interface Props {
+  title?: string;
+}
+const { title = 'Weekly <em>keiko</em>' } = Astro.props;
+---
+
+<div class="schedule-card">
+  <h3 class="schedule-title" set:html={title} />
+  {SCHEDULE.map(({ day, start, end, note }) => (
+    <div class="schedule-row-k">
+      <span class="day">{day}</span>
+      <span class="time">{start} to {end}</span>
+      <span class="note">{note}</span>
+    </div>
+  ))}
+</div>

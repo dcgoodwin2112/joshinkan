@@ -1,0 +1,97 @@
+---
+type Variant = 'sumi' | 'kaze' | 'yoru';
+
+interface Props {
+  current: Variant;
+}
+
+const { current } = Astro.props;
+
+const variants: { slug: Variant; label: string }[] = [
+  { slug: 'sumi', label: 'Sumi' },
+  { slug: 'kaze', label: 'Kaze' },
+  { slug: 'yoru', label: 'Yoru' },
+];
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const rest = segments.slice(1).join('/');
+const suffix = rest ? `/${rest}` : '';
+---
+
+<aside class="variant-switcher" aria-label="Design variant">
+  <span class="vs-label">Compare</span>
+  <nav>
+    {variants.map(({ slug, label }) => (
+      <a
+        href={`/${slug}${suffix}`}
+        class:list={[{ 'is-current': slug === current }]}
+        aria-current={slug === current ? 'page' : undefined}
+      >{label}</a>
+    ))}
+  </nav>
+  <a class="vs-home" href="/" aria-label="Back to picker">↩</a>
+</aside>
+
+<style>
+  .variant-switcher {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 14px 8px 18px;
+    background: rgba(20, 20, 20, 0.88);
+    color: #f3eee3;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  }
+  .vs-label {
+    color: rgba(243, 238, 227, 0.55);
+    font-weight: 500;
+  }
+  .variant-switcher nav {
+    display: flex;
+    gap: 4px;
+  }
+  .variant-switcher nav a {
+    display: inline-block;
+    padding: 6px 12px;
+    color: rgba(243, 238, 227, 0.75);
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background 0.15s ease, color 0.15s ease;
+    font-weight: 500;
+  }
+  .variant-switcher nav a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .variant-switcher nav a.is-current {
+    background: #f3eee3;
+    color: #0f0f13;
+  }
+  .vs-home {
+    color: rgba(243, 238, 227, 0.55);
+    text-decoration: none;
+    padding: 0 4px 0 8px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+  }
+  .vs-home:hover {
+    color: #fff;
+  }
+  @media (max-width: 480px) {
+    .variant-switcher { font-size: 11px; gap: 8px; padding: 6px 10px 6px 14px; }
+    .variant-switcher nav a { padding: 5px 10px; }
+  }
+</style>

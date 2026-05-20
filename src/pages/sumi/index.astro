@@ -1,0 +1,44 @@
+---
+import SumiLayout from '~/layouts/SumiLayout.astro';
+import Schedule from '~/components/sumi/Schedule.astro';
+---
+
+<SumiLayout>
+  <section class="hero">
+    <div>
+      <p class="hero-eyebrow">The Center for Aikido Study</p>
+      <h1>Aikido, the Way of <em>Spirit Harmony</em>.</h1>
+      <p class="lede">A small nonprofit dojo in Cary, training in the tradition of Fumio Toyoda Shihan.</p>
+    </div>
+    <div class="hero-kanji">合氣道</div>
+  </section>
+
+  <section>
+    <div class="two-col">
+      <div>
+        <p class="section-eyebrow">What we practice</p>
+        <h3>Aikido is a <em>budo</em>, a martial way, drawn from traditional Japanese arts.</h3>
+        <p class="prose">We work on movement, balance, posture, and state of mind, and how those qualities shape your connection with a partner. The practice looks outward, but it asks you to look inward first.</p>
+      </div>
+      <div>
+        <p class="section-eyebrow">How we teach</p>
+        <h3>Instruction meets each student at their level.</h3>
+        <p class="prose">Classes focus on the basic principles of Aikido and their applications in technique. New students are paired with an instructor for one month of introductory training before deciding whether to continue.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-eyebrow">Class schedule</p>
+    <h2 class="section-title">Three nights a week, plus Sunday open mat.</h2>
+    <Schedule />
+    <p style="margin-top: 36px; font-style: italic; color: var(--ink-muted); font-family: var(--serif-d); font-size: 20px;">Visitors are always welcome to observe a class.</p>
+  </section>
+
+  <section>
+    <p class="section-eyebrow">Begin</p>
+    <h2 class="section-title">Stop by anytime.</h2>
+    <p class="prose">If you are new to Aikido, we ask that you join for one month and attend as many classes as you can. You will be paired with an instructor who will work with you on basic movements and how to safely train. After your introductory month, if you wish to continue, we set up your membership. No contracts.</p>
+    <p style="margin-top: 40px;"><a href="/sumi/visit" class="cta cta-vermilion">Plan your first visit</a></p>
+  </section>
+</SumiLayout>

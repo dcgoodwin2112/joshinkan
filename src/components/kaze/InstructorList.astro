@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const all = await getCollection('instructors');
+const instructors = all.sort((a, b) => a.data.order - b.data.order);
+const photoTints = ['forest', 'sage', 'clay'] as const;
+---
+
+<div class="instructor-grid">
+  {await Promise.all(instructors.map(async (entry, i) => {
+    const { Content } = await render(entry);
+    const tint = photoTints[i % photoTints.length];
+    const surname = entry.data.name.replace(/^Sensei\s+/, '').split(/\s+/).slice(-1)[0];
+    const teaches = entry.data.teaches;
+    const role = teaches ? `${entry.data.role} · ${teaches}` : entry.data.role;
+    return (
+      <article class="instructor-card">
+        <div class={`photo ${tint}`}>
+          {entry.data.photo
+            ? <Image src={entry.data.photo} alt={entry.data.name} loading="lazy" widths={[400, 800]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+            : <span class="photo-label">{surname} Sensei</span>}
+        </div>
+        <span class="role">{role}</span>
+        <h3>{entry.data.name}</h3>
+        <span class="rank">{entry.data.rank} · {entry.data.rankNote}</span>
+        <Content />
+      </article>
+    );
+  }))}
+</div>
