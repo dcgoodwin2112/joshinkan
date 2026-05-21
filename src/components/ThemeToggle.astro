@@ -76,7 +76,6 @@
     background: none;
     border: 0;
     padding: 6px;
-    margin-left: 16px;
     cursor: pointer;
     color: var(--char-soft);
     display: inline-flex;
@@ -96,4 +95,10 @@
   :root[data-theme-mode='auto'] .theme-toggle .ti-auto { display: inline-block; }
   :root[data-theme-mode='light'] .theme-toggle .ti-light { display: inline-block; }
   :root[data-theme-mode='dark'] .theme-toggle .ti-dark { display: inline-block; }
+
+  /* Match the hamburger button's hit area on mobile so the two focus rings
+     are the same size when tabbed. Icon stays 18×18, centered by inline-flex. */
+  @media (max-width: 700px) {
+    .theme-toggle { width: 40px; height: 40px; padding: 0; }
+  }
 </style>

@@ -8,10 +8,10 @@ import { DUES } from '~/data/site';
 ---
 
 <Layout>
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
     <div>
       <span class="eyebrow">Cary, North Carolina</span>
-      <h1>Traditional Aikido, <em>taught at your level.</em></h1>
+      <h1 id="hero-title">Traditional Aikido, <em>taught at your level.</em></h1>
       <p class="lede">A small nonprofit dojo affiliated with the Aikido Association of America. Volunteer instructors, three nights a week plus Sunday open mat, no contracts.</p>
       <a href="/visit" class="cta clay">Visit a class</a>
     </div>
@@ -21,7 +21,7 @@ import { DUES } from '~/data/site';
     </div>
   </section>
 
-  <section>
+  <section aria-labelledby="practice-title">
     <span class="section-num">02 / Practice</span>
     <div class="split">
       <div class="image sage">
@@ -30,7 +30,7 @@ import { DUES } from '~/data/site';
       </div>
       <div>
         <span class="eyebrow">What we practice</span>
-        <h2 class="section-title">Aikido is a <em>budo</em>, drawn from traditional Japanese arts.</h2>
+        <h2 id="practice-title" class="section-title">Aikido is a <em>budo</em>, drawn from traditional Japanese arts.</h2>
         <div class="prose">
           <p>In Aikido we put great focus on movement, balance, posture, and your state of mind, and how this influences your connection with others. We look inwards to make changes in ourselves, so we can lead others to change.</p>
           <p>Instruction is focused both on the basic principles of Aikido and their applications in technique. Above all, it is taught at your level of ability.</p>
@@ -39,7 +39,7 @@ import { DUES } from '~/data/site';
     </div>
   </section>
 
-  <section>
+  <section aria-label="Dojo at a glance">
     <div class="stats">
       <div class="stat"><div class="label">Classes / week</div><div class="value">4</div></div>
       <div class="stat"><div class="label">Monthly dues</div><div class="value italic">${DUES.monthly}</div></div>
@@ -47,20 +47,20 @@ import { DUES } from '~/data/site';
     </div>
   </section>
 
-  <section>
+  <section aria-labelledby="schedule-title">
     <span class="section-num">03 / Schedule</span>
     <span class="eyebrow">Class times</span>
-    <h2 class="section-title">Three nights, plus open mat on Sunday.</h2>
+    <h2 id="schedule-title" class="section-title">Three nights, plus open mat on Sunday.</h2>
     <Schedule />
     <p style="margin-top: 32px; font-family: var(--serif); font-style: italic; color: var(--char-soft); font-size: 20px;">Visitors are always welcome to observe a class.</p>
   </section>
 
   <div class="pull">To find harmony with another, you must first find it within yourself.<cite>The way of Aikido</cite></div>
 
-  <section>
+  <section aria-labelledby="begin-title">
     <span class="section-num">04 / Begin</span>
     <span class="eyebrow">Start here</span>
-    <h2 class="section-title">Stop by anytime.</h2>
+    <h2 id="begin-title" class="section-title">Stop by anytime.</h2>
     <div class="prose">
       <p>If you are new to Aikido, we ask that you join for one month and attend as many classes as you can. You will be paired with an instructor who will work with you on basic movements and how to safely train.</p>
       <p>If after the introductory month you wish to continue, we set up your membership. No contracts. ${DUES.monthly} a month.</p>

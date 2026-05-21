@@ -45,9 +45,10 @@ const {
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
     <div class="shell">
       <Header />
-      <main>
+      <main id="main" tabindex="-1">
         <slot />
       </main>
       <Footer />

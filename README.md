@@ -68,7 +68,6 @@ How it works:
 
 ## Pre-launch checklist
 
-- [ ] Mobile hamburger nav
 - [ ] `JSON-LD MartialArtsSchool` schema
 - [ ] Favicon
 - [ ] OG image
