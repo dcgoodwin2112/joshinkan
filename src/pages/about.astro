@@ -1,11 +1,11 @@
 ---
-import KazeLayout from '~/layouts/KazeLayout.astro';
-import InstructorList from '~/components/kaze/InstructorList.astro';
+import Layout from '~/layouts/Layout.astro';
+import InstructorList from '~/components/InstructorList.astro';
 import { Image } from 'astro:assets';
 import bokkenPractice from '~/assets/boken-practice1.png';
 ---
 
-<KazeLayout
+<Layout
   title="About: Joshinkan Dojo"
   description="About the Center for Aikido Study, the practice of Aikido, and our volunteer instructors."
 >
@@ -57,6 +57,6 @@ import bokkenPractice from '~/assets/boken-practice1.png';
     <span class="eyebrow">Ready to train</span>
     <h2 class="section-title">Visit the dojo.</h2>
     <p class="prose">Class times, dues, location, and the path to membership are all on one page.</p>
-    <p style="margin-top: 40px;"><a href="/kaze/visit" class="cta clay">Plan your visit</a></p>
+    <p style="margin-top: 40px;"><a href="/visit" class="cta clay">Plan your visit</a></p>
   </section>
-</KazeLayout>
+</Layout>

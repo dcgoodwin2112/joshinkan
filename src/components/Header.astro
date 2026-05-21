@@ -1,0 +1,25 @@
+---
+import { SITE, NAV } from '~/data/site';
+import ThemeToggle from '~/components/ThemeToggle.astro';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark"><a href="/">{SITE.brand}</a></span>
+    <span class="brand-kanji">{SITE.kanji}</span>
+  </div>
+  <span class="brand-tag">Center for Aikido Study</span>
+  <nav class="site-nav" aria-label="Primary">
+    {NAV.map(({ label, href }) => {
+      const isCurrent = href === '/'
+        ? currentPath === '/'
+        : currentPath === href || currentPath.startsWith(`${href}/`);
+      return (
+        <a href={href} class:list={[{ 'is-current': isCurrent }]}>{label}</a>
+      );
+    })}
+    <ThemeToggle />
+  </nav>
+</header>

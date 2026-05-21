@@ -1,9 +1,8 @@
 ---
-import Header from '~/components/yoru/Header.astro';
-import Footer from '~/components/yoru/Footer.astro';
-import VariantSwitcher from '~/components/VariantSwitcher.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
 import { SITE } from '~/data/site';
-import '~/styles/yoru.css';
+import '~/styles/main.css';
 
 interface Props {
   title?: string;
@@ -29,6 +28,21 @@ const {
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var mode = saved === 'light' || saved === 'dark' || saved === 'auto' ? saved : 'auto';
+          var dark = mode === 'dark' || (mode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var root = document.documentElement;
+          root.dataset.theme = dark ? 'dark' : 'light';
+          root.dataset.themeMode = mode;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themeMode = 'auto';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div class="shell">
@@ -38,6 +52,5 @@ const {
       </main>
       <Footer />
     </div>
-    <VariantSwitcher current="yoru" />
   </body>
 </html>

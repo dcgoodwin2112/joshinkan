@@ -1,6 +1,5 @@
 ---
 import { SITE, CONTACT, LINKS, NAV } from '~/data/site';
-const variant = 'kaze';
 const year = new Date().getFullYear();
 ---
 
@@ -21,7 +20,7 @@ const year = new Date().getFullYear();
     <h4>Site</h4>
     <ul>
       {NAV.map(({ label, href }) => (
-        <li><a href={href === '/' ? `/${variant}` : `/${variant}${href}`}>{label}</a></li>
+        <li><a href={href}>{label}</a></li>
       ))}
     </ul>
   </div>

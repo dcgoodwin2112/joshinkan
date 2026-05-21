@@ -1,13 +1,13 @@
 ---
-import KazeLayout from '~/layouts/KazeLayout.astro';
-import Schedule from '~/components/kaze/Schedule.astro';
+import Layout from '~/layouts/Layout.astro';
+import Schedule from '~/components/Schedule.astro';
 import Map from '~/components/Map.astro';
 import { Image } from 'astro:assets';
 import toyodaSeminar from '~/assets/toyoda-seminar.jpg';
 import { CONTACT, LINKS, DUES } from '~/data/site';
 ---
 
-<KazeLayout
+<Layout
   title="Visit: Joshinkan Dojo"
   description="Class schedule, dues, location, and contact information for Joshinkan Dojo in Cary, NC."
 >
@@ -75,4 +75,4 @@ import { CONTACT, LINKS, DUES } from '~/data/site';
       <div class="contact-item"><div class="label">Social</div><div class="value"><a href={LINKS.facebook} target="_blank" rel="noopener">Facebook</a></div></div>
     </div>
   </section>
-</KazeLayout>
+</Layout>

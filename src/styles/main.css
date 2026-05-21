@@ -1,5 +1,6 @@
-/* KAZE: warm modern editorial. Sage, clay, cream. */
+/* Light: warm modern editorial (sage, clay, cream). Dark: refined night (charcoal, cream, amber). */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Manrope:wght@300;400;500;600&display=swap');
 :root {
   --cream: #faf6ec; --cream-deep: #f0e9d6;
   --forest: #1f3329; --forest-soft: #2d4a3a;
@@ -7,8 +8,24 @@
   --clay: #a85a30; --clay-soft: #e09a76;
   --charcoal: #2a2a26; --char-soft: #5a5a52;
   --rule: #d8d0bd;
+  --card-bg: var(--forest); --card-fg: var(--cream);
+  --card-fg-soft: var(--sage-soft); --card-rule: rgba(255,255,255,0.12);
   --serif: 'Fraunces', Georgia, serif;
   --sans: 'DM Sans', system-ui, sans-serif;
+}
+:root[data-theme='dark'] {
+  --cream: #0f0f13; --cream-deep: #16161c;
+  --forest: #f3eee3; --forest-soft: #d8d2c4;
+  --sage: #8a857a; --sage-soft: #d8d2c4;
+  --clay: #d4a574; --clay-soft: #e8c197;
+  /* --char-soft is overloaded for both body prose and small-caps labels.
+     Pick a mid value bright enough to read prose, muted enough for captions. */
+  --charcoal: #f3eee3; --char-soft: #b8b1a3;
+  --rule: #2a2a32;
+  --card-bg: #1c1c24; --card-fg: #f3eee3;
+  --card-fg-soft: #b8b1a3; --card-rule: #2a2a32;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Manrope', system-ui, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -75,13 +92,13 @@ section:last-of-type { border-bottom: none; }
 .instructor-card .rank { font-family: var(--serif); font-style: italic; color: var(--clay); font-size: 17px; }
 .instructor-card .role { font-family: var(--sans); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--char-soft); font-weight: 500; }
 .instructor-card p { font-size: 16px; color: var(--char-soft); line-height: 1.55; }
-.schedule-card { background: var(--forest); color: var(--cream); padding: 56px; border-radius: 4px; }
+.schedule-card { background: var(--card-bg); color: var(--card-fg); padding: 56px; border-radius: 4px; }
 .schedule-card .schedule-title { font-family: var(--serif); font-size: 32px; margin-bottom: 32px; font-weight: 400; }
 .schedule-card .schedule-title em { color: var(--clay-soft); font-style: italic; font-weight: 300; }
-.schedule-row-k { display: grid; grid-template-columns: 1fr 1.2fr auto; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.12); font-family: var(--sans); }
+.schedule-row-k { display: grid; grid-template-columns: 1fr 1.2fr auto; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--card-rule); font-family: var(--sans); }
 .schedule-row-k:last-child { border-bottom: none; }
 .schedule-row-k .day { font-family: var(--serif); font-size: 22px; font-weight: 400; }
-.schedule-row-k .time { color: var(--sage-soft); font-size: 16px; }
+.schedule-row-k .time { color: var(--card-fg-soft); font-size: 16px; }
 .schedule-row-k .note { font-family: var(--serif); font-style: italic; color: var(--clay-soft); font-size: 16px; }
 .info-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; padding: 48px 0; }
 .info-row .info { padding-top: 24px; border-top: 2px solid var(--clay); }
@@ -101,14 +118,14 @@ section:last-of-type { border-bottom: none; }
 .contact-item .value { font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--forest); }
 .contact-item .value a { color: var(--forest); }
 .contact-item .value a:hover { color: var(--clay); }
-.site-footer { margin-top: 80px; padding: 64px 56px 32px; background: var(--forest); color: var(--cream); display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
-.site-footer h4 { font-family: var(--serif); font-size: 18px; margin-bottom: 16px; color: var(--cream); font-weight: 500; }
-.site-footer a { color: var(--sage-soft); }
+.site-footer { margin-top: 80px; padding: 64px 56px 32px; background: var(--card-bg); color: var(--card-fg); display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+.site-footer h4 { font-family: var(--serif); font-size: 18px; margin-bottom: 16px; color: var(--card-fg); font-weight: 500; }
+.site-footer a { color: var(--card-fg-soft); }
 .site-footer a:hover { color: var(--clay-soft); }
-.site-footer p, .site-footer li { color: var(--sage-soft); font-size: 14px; line-height: 1.6; }
+.site-footer p, .site-footer li { color: var(--card-fg-soft); font-size: 14px; line-height: 1.6; }
 .site-footer ul { list-style: none; display: grid; gap: 6px; }
-.site-footer .brand-footer { font-family: var(--serif); font-size: 32px; font-weight: 400; margin-bottom: 12px; color: var(--cream); }
-.copyright { grid-column: 1 / -1; padding-top: 32px; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); font-family: var(--sans); font-size: 13px; color: var(--sage-soft); display: flex; justify-content: space-between; letter-spacing: 0.02em; }
+.site-footer .brand-footer { font-family: var(--serif); font-size: 32px; font-weight: 400; margin-bottom: 12px; color: var(--card-fg); }
+.copyright { grid-column: 1 / -1; padding-top: 32px; margin-top: 24px; border-top: 1px solid var(--card-rule); font-family: var(--sans); font-size: 13px; color: var(--card-fg-soft); display: flex; justify-content: space-between; letter-spacing: 0.02em; }
 .instructor-card .photo img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .hero-image img { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .split .image { overflow: hidden; }
