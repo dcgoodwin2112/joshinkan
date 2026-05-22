@@ -1,33 +1,33 @@
 ---
-import KazeLayout from '~/layouts/KazeLayout.astro';
-import Schedule from '~/components/kaze/Schedule.astro';
+import Layout from '~/layouts/Layout.astro';
+import Schedule from '~/components/Schedule.astro';
 import Map from '~/components/Map.astro';
 import { Image } from 'astro:assets';
 import toyodaSeminar from '~/assets/toyoda-seminar.jpg';
 import { CONTACT, LINKS, DUES } from '~/data/site';
 ---
 
-<KazeLayout
+<Layout
   title="Visit: Joshinkan Dojo"
   description="Class schedule, dues, location, and contact information for Joshinkan Dojo in Cary, NC."
 >
   <div class="page-head">
-    <h1>Plan your <em>visit</em>.</h1>
+    <h1 id="page-title">Plan your <em>visit</em>.</h1>
     <div class="meta"><strong>Page</strong><br />03 / Schedule, dues, location, contact</div>
   </div>
 
-  <section>
+  <section aria-labelledby="visit-schedule-title">
     <span class="section-num">01 / Schedule</span>
     <span class="eyebrow">Weekly classes</span>
-    <h2 class="section-title">Three nights, plus open mat.</h2>
+    <h2 id="visit-schedule-title" class="section-title">Three nights, plus open mat.</h2>
     <Schedule title="Class times" />
     <p style="margin-top: 32px; font-family: var(--serif); font-style: italic; color: var(--char-soft); font-size: 20px;">Stop by anytime during regularly scheduled classes. Visitors are always welcome to observe.</p>
   </section>
 
-  <section>
+  <section aria-labelledby="membership-title">
     <span class="section-num">02 / Membership</span>
     <span class="eyebrow">How to begin</span>
-    <h2 class="section-title">Two paths to start.</h2>
+    <h2 id="membership-title" class="section-title">Two paths to start.</h2>
     <div class="paths">
       <div>
         <h3>If you are new to Aikido</h3>
@@ -53,10 +53,10 @@ import { CONTACT, LINKS, DUES } from '~/data/site';
     </div>
   </section>
 
-  <section>
+  <section aria-labelledby="location-title">
     <span class="section-num">03 / Location</span>
     <span class="eyebrow">Find us</span>
-    <h2 class="section-title">{CONTACT.address.street}, Cary.</h2>
+    <h2 id="location-title" class="section-title">{CONTACT.address.street}, Cary.</h2>
     <div class="prose">
       <p>The dojo is located inside <strong>Master Chang's Taekwondo</strong>, just off High House Road in Cary. Parking is available on site.</p>
       <p>Five minutes from downtown Cary, twenty from downtown Raleigh.</p>
@@ -64,10 +64,10 @@ import { CONTACT, LINKS, DUES } from '~/data/site';
     <div class="map-block"><Map /></div>
   </section>
 
-  <section>
+  <section aria-labelledby="contact-title">
     <span class="section-num">04 / Contact</span>
     <span class="eyebrow">Reach the dojo</span>
-    <h2 class="section-title">Get in touch.</h2>
+    <h2 id="contact-title" class="section-title">Get in touch.</h2>
     <div class="contact-grid">
       <div class="contact-item"><div class="label">Address</div><div class="value">{CONTACT.address.street}<br />{CONTACT.address.cityStateZip}</div></div>
       <div class="contact-item"><div class="label">Phone</div><div class="value"><a href={`tel:${CONTACT.phoneTel}`}>{CONTACT.phone}</a></div></div>
@@ -75,4 +75,4 @@ import { CONTACT, LINKS, DUES } from '~/data/site';
       <div class="contact-item"><div class="label">Social</div><div class="value"><a href={LINKS.facebook} target="_blank" rel="noopener">Facebook</a></div></div>
     </div>
   </section>
-</KazeLayout>
+</Layout>

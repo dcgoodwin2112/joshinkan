@@ -1,181 +1,70 @@
 ---
-import PickerLayout from '~/layouts/PickerLayout.astro';
-import { SITE } from '~/data/site';
-
-const variants = [
-  {
-    slug: 'sumi',
-    kanji: '墨',
-    name: 'Sumi',
-    tagline: 'Classical editorial',
-    blurb: 'Ink on paper, vermilion accent, centered typographic columns. Quiet, reverent, traditional.',
-    accent: '#b73239',
-    background: '#f5f0e6',
-    foreground: '#1a1a1a',
-    serif: "'Cormorant Garamond', Georgia, serif",
-  },
-  {
-    slug: 'kaze',
-    kanji: '風',
-    name: 'Kaze',
-    tagline: 'Warm modern editorial',
-    blurb: 'Forest, clay, cream, sage. Asymmetric magazine grid. Welcoming and contemporary.',
-    accent: '#c97a52',
-    background: '#faf6ec',
-    foreground: '#1f3329',
-    serif: "'Fraunces', Georgia, serif",
-  },
-  {
-    slug: 'yoru',
-    kanji: '夜',
-    name: 'Yoru',
-    tagline: 'Refined dark',
-    blurb: 'Near-black, warm cream, amber. Mono labels and hairline rules. Quiet confidence, evening.',
-    accent: '#d4a574',
-    background: '#0f0f13',
-    foreground: '#f3eee3',
-    serif: "'Newsreader', Georgia, serif",
-  },
-];
+import Layout from '~/layouts/Layout.astro';
+import Schedule from '~/components/Schedule.astro';
+import { Image } from 'astro:assets';
+import whatleyHero from '~/assets/whatley3.png';
+import framptonTurner from '~/assets/frampton-turner.jpg';
+import { DUES } from '~/data/site';
 ---
 
-<PickerLayout>
-  <main class="picker">
-    <header>
-      <p class="eyebrow">{SITE.brand} {SITE.kanji} · design preview</p>
-      <h1>Three directions for the new site.</h1>
-      <p class="lede">
-        Each option below is a full three-page mock — home, about, visit — built from the same content.
-        Click in, look around, then come back and try another. A small switcher at the bottom of every
-        page lets you hop between variants on the same screen.
-      </p>
-    </header>
+<Layout>
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <span class="eyebrow">Cary, North Carolina</span>
+      <h1 id="hero-title">Traditional Aikido, <em>taught at your level.</em></h1>
+      <p class="lede">A small nonprofit dojo affiliated with the Aikido Association of America. Volunteer instructors, three nights a week plus Sunday open mat, no contracts.</p>
+      <a href="/visit" class="cta clay">Visit a class</a>
+    </div>
+    <div class="hero-image">
+      <Image src={whatleyHero} alt="Jon Whatley Sensei" widths={[600, 1200, 1800]} sizes="(min-width: 1024px) 50vw, 100vw" />
+      <span class="hero-image-label">Jon Whatley Sensei</span>
+    </div>
+  </section>
 
-    <ul class="grid">
-      {variants.map((v) => (
-        <li>
-          <a
-            href={`/${v.slug}`}
-            class="card"
-            style={`--card-bg: ${v.background}; --card-fg: ${v.foreground}; --card-accent: ${v.accent}; --card-serif: ${v.serif};`}
-          >
-            <span class="kanji">{v.kanji}</span>
-            <span class="name">{v.name}</span>
-            <span class="tagline">{v.tagline}</span>
-            <span class="blurb">{v.blurb}</span>
-            <span class="cta">Open preview →</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+  <section aria-labelledby="practice-title">
+    <span class="section-num">02 / Practice</span>
+    <div class="split">
+      <div class="image sage">
+        <Image src={framptonTurner} alt="Mary Turner Sensei and Dave Frampton Sensei, technique practice" loading="lazy" widths={[600, 1200]} sizes="(min-width: 1024px) 50vw, 100vw" />
+        <span>Mary Turner Sensei · Dave Frampton Sensei</span>
+      </div>
+      <div>
+        <span class="eyebrow">What we practice</span>
+        <h2 id="practice-title" class="section-title">Aikido is a <em>budo</em>, drawn from traditional Japanese arts.</h2>
+        <div class="prose">
+          <p>In Aikido we put great focus on movement, balance, posture, and your state of mind, and how this influences your connection with others. We look inwards to make changes in ourselves, so we can lead others to change.</p>
+          <p>Instruction is focused both on the basic principles of Aikido and their applications in technique. Above all, it is taught at your level of ability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-      <p>The two designs that aren't picked will be removed before launch.</p>
-    </footer>
-  </main>
+  <section aria-label="Dojo at a glance">
+    <div class="stats">
+      <div class="stat"><div class="label">Classes / week</div><div class="value">4</div></div>
+      <div class="stat"><div class="label">Monthly dues</div><div class="value italic">${DUES.monthly}</div></div>
+      <div class="stat"><div class="label">Contracts</div><div class="value italic">None</div></div>
+    </div>
+  </section>
 
-  <style>
-    .picker {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 96px 32px 120px;
-    }
-    .picker > header {
-      max-width: 640px;
-      margin-bottom: 64px;
-    }
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(243, 238, 227, 0.65);
-      margin-bottom: 24px;
-    }
-    h1 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(40px, 5.5vw, 64px);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-    }
-    .lede {
-      font-size: 18px;
-      line-height: 1.6;
-      color: rgba(243, 238, 227, 0.7);
-    }
+  <section aria-labelledby="schedule-title">
+    <span class="section-num">03 / Schedule</span>
+    <span class="eyebrow">Class times</span>
+    <h2 id="schedule-title" class="section-title">Three nights, plus open mat on Sunday.</h2>
+    <Schedule />
+    <p style="margin-top: 32px; font-family: var(--serif); font-style: italic; color: var(--char-soft); font-size: 20px;">Visitors are always welcome to observe a class.</p>
+  </section>
 
-    .grid {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
-      .picker { padding: 64px 24px 96px; }
-    }
+  <div class="pull">To find harmony with another, you must first find it within yourself.<cite>The way of Aikido</cite></div>
 
-    .card {
-      display: grid;
-      grid-template-rows: auto auto auto 1fr auto;
-      gap: 12px;
-      padding: 36px 32px 32px;
-      min-height: 360px;
-      background: var(--card-bg);
-      color: var(--card-fg);
-      border-radius: 6px;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
-    }
-    .card .kanji {
-      font-family: var(--card-serif);
-      font-size: 56px;
-      line-height: 1;
-      color: var(--card-accent);
-    }
-    .card .name {
-      font-family: var(--card-serif);
-      font-size: 32px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      line-height: 1;
-    }
-    .card .tagline {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--card-accent);
-      font-weight: 500;
-    }
-    .card .blurb {
-      font-family: var(--card-serif);
-      font-size: 19px;
-      line-height: 1.45;
-      font-style: italic;
-      color: var(--card-fg);
-      opacity: 0.85;
-      max-width: 28ch;
-    }
-    .card .cta {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--card-accent);
-      font-weight: 600;
-      padding-top: 8px;
-    }
-
-    .picker > footer {
-      margin-top: 72px;
-      font-size: 13px;
-      color: rgba(243, 238, 227, 0.6);
-      letter-spacing: 0.04em;
-    }
-  </style>
-</PickerLayout>
+  <section aria-labelledby="begin-title">
+    <span class="section-num">04 / Begin</span>
+    <span class="eyebrow">Start here</span>
+    <h2 id="begin-title" class="section-title">Stop by anytime.</h2>
+    <div class="prose">
+      <p>If you are new to Aikido, we ask that you join for one month and attend as many classes as you can. You will be paired with an instructor who will work with you on basic movements and how to safely train.</p>
+      <p>If after the introductory month you wish to continue, we set up your membership. No contracts. ${DUES.monthly} a month.</p>
+    </div>
+    <p style="margin-top: 40px;"><a href="/visit" class="cta">Plan your visit</a></p>
+  </section>
+</Layout>
