@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
     <p>The Center for Aikido Study is a 501(c) nonprofit. All instructors volunteer their time, and all dues maintain the dojo.</p>
   </div>
   <div>
-    <h4>Visit</h4>
+    <h2>Visit</h2>
     <ul>
       <li>{CONTACT.address.street}</li>
       <li>{CONTACT.address.cityStateZip}</li>
@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
     </ul>
   </div>
   <div>
-    <h4>Site</h4>
+    <h2>Site</h2>
     <ul>
       {NAV.map(({ label, href }) => (
         <li><a href={href}>{label}</a></li>
@@ -25,11 +25,11 @@ const year = new Date().getFullYear();
     </ul>
   </div>
   <div>
-    <h4>Elsewhere</h4>
+    <h2>Elsewhere</h2>
     <ul>
-      <li><a href={LINKS.aaa} target="_blank" rel="noopener">AAA</a></li>
-      <li><a href={LINKS.facebook} target="_blank" rel="noopener">Facebook</a></li>
-      <li><a href={LINKS.triangle} target="_blank" rel="noopener">Triangle Aikido</a></li>
+      <li><a href={LINKS.aaa} target="_blank" rel="noopener noreferrer">AAA</a></li>
+      <li><a href={LINKS.facebook} target="_blank" rel="noopener noreferrer">Facebook</a></li>
+      <li><a href={LINKS.triangle} target="_blank" rel="noopener noreferrer">Triangle Aikido</a></li>
     </ul>
   </div>
   <div class="copyright">
