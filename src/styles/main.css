@@ -1,6 +1,5 @@
-/* Light: warm modern editorial (sage, clay, cream). Dark: refined night (charcoal, cream, amber). */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Manrope:wght@300;400;500;600&display=swap');
+/* Light: warm modern editorial (sage, clay, cream). Dark: refined night (charcoal, cream, amber).
+   Google Fonts are loaded via <link> in Layout.astro (faster than CSS @import). */
 :root {
   --cream: #faf6ec; --cream-deep: #f0e9d6;
   --forest: #1f3329; --forest-soft: #2d4a3a;
@@ -139,6 +138,7 @@ section:last-of-type { border-bottom: none; }
 .contact-item { padding-top: 20px; border-top: 1px solid var(--rule); }
 .contact-item .label { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay); font-weight: 500; margin-bottom: 8px; }
 .contact-item .value { font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--forest); overflow-wrap: anywhere; }
+.contact-item .value address { font-style: normal; }
 .contact-item .value a { color: var(--forest); }
 .contact-item .value a:hover { color: var(--clay); }
 .site-footer { margin-top: 80px; padding: 64px 56px 32px; background: var(--card-bg); color: var(--card-fg); display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
