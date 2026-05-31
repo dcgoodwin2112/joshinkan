@@ -1,0 +1,23 @@
+---
+import Layout from '~/layouts/Layout.astro';
+---
+
+<Layout
+  title="Page not found | Joshinkan Dojo"
+  description="The page you're looking for doesn't exist or has moved. Return to Joshinkan Dojo — Aikido in Cary, NC."
+>
+  <div class="page-head">
+    <h1 id="page-title"><em>404</em> — page not found.</h1>
+    <div class="meta"><strong>Status</strong><br />Page does not exist or has moved</div>
+  </div>
+
+  <section aria-labelledby="not-found-title">
+    <span class="eyebrow">We can't find that page</span>
+    <h2 id="not-found-title" class="section-title">Try one of these instead.</h2>
+    <div class="prose">
+      <p>The page you tried to reach isn't here. It may have moved, or the link may be wrong.</p>
+      <p>From the home page you can read about <a href="/about">our story and instructors</a>, or jump straight to the <a href="/visit">class schedule, location, and contact info</a>.</p>
+    </div>
+    <p style="margin-top: 40px;"><a href="/" class="cta clay">Back to home</a></p>
+  </section>
+</Layout>

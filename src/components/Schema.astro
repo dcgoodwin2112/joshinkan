@@ -1,0 +1,101 @@
+---
+// JSON-LD structured data for the dojo. Emits MartialArtsSchool schema
+// (a LocalBusiness subtype) so search engines / assistants understand the
+// site as a real-world place with hours, location, and contact info.
+// On /about, also emits Person entries for each instructor linked via
+// worksFor → @id of the MartialArtsSchool, so search engines model the
+// people relationship cleanly.
+// Drives entirely off ~/data/site.ts so a single edit there propagates here.
+
+import { getCollection } from 'astro:content';
+import { SITE, CONTACT, SCHEDULE, LINKS } from '~/data/site';
+import heroImage from '~/assets/whatley3.png';
+
+/** Convert "8:00 PM" → "20:00", "11:00 AM" → "11:00" (schema.org expects 24h). */
+function to24Hour(timeStr: string): string {
+  const m = timeStr.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!m) return timeStr;
+  let h = parseInt(m[1], 10);
+  const meridiem = m[3].toUpperCase();
+  if (meridiem === 'PM' && h !== 12) h += 12;
+  if (meridiem === 'AM' && h === 12) h = 0;
+  return `${String(h).padStart(2, '0')}:${m[2]}`;
+}
+
+/** "+19195782990" → "+1-919-578-2990" (E.164 with separators). */
+function formatPhone(tel: string): string {
+  const m = tel.match(/^\+1(\d{3})(\d{3})(\d{4})$/);
+  return m ? `+1-${m[1]}-${m[2]}-${m[3]}` : tel;
+}
+
+// Split "Cary, NC 27513" into its parts.
+const [city, stateZip] = CONTACT.address.cityStateZip.split(',').map((s) => s.trim());
+const [state, postalCode] = stateZip.split(/\s+/);
+
+const dojoId = `${SITE.url}#dojo`;
+
+const dojo = {
+  '@type': 'MartialArtsSchool',
+  '@id': dojoId,
+  name: SITE.title,
+  alternateName: `${SITE.brand} Dojo`,
+  description: SITE.description,
+  url: SITE.url,
+  telephone: formatPhone(CONTACT.phoneTel),
+  email: CONTACT.email,
+  image: new URL(heroImage.src, SITE.url).toString(),
+  priceRange: '$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: CONTACT.address.street,
+    addressLocality: city,
+    addressRegion: state,
+    postalCode,
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 35.7885385,
+    longitude: -78.8263641,
+  },
+  openingHoursSpecification: SCHEDULE.map((s) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: s.day,
+    opens: to24Hour(s.start),
+    closes: to24Hour(s.end),
+  })),
+  sameAs: [LINKS.aaa, LINKS.facebook, LINKS.triangle].filter(Boolean),
+  memberOf: {
+    '@type': 'Organization',
+    name: 'Aikido Association of America',
+    url: LINKS.aaa,
+  },
+};
+
+// On /about, render Person entities alongside the dojo. Pulls bios + ranks
+// directly from the instructors content collection so a markdown edit
+// propagates into the schema.
+const onAbout = Astro.url.pathname === '/about';
+let instructors: Awaited<ReturnType<typeof getCollection<'instructors'>>> = [];
+if (onAbout) {
+  instructors = (await getCollection('instructors')).sort((a, b) => a.data.order - b.data.order);
+}
+
+const persons = instructors.map((entry) => ({
+  '@type': 'Person',
+  name: entry.data.name,
+  jobTitle: entry.data.role,
+  description: entry.body?.trim() || undefined,
+  worksFor: { '@id': dojoId },
+  ...(entry.data.photo
+    ? { image: new URL(entry.data.photo.src, SITE.url).toString() }
+    : {}),
+}));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [dojo, ...persons],
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

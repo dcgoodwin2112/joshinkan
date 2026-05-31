@@ -7,7 +7,10 @@ import framptonTurner from '~/assets/frampton-turner.jpg';
 import { DUES } from '~/data/site';
 ---
 
-<Layout>
+<Layout
+  title="Aikido in Cary, NC | Joshinkan Dojo — Center for Aikido Study"
+  description="Traditional Aikido in Cary and Raleigh, North Carolina. A small nonprofit dojo affiliated with the Aikido Association of America. Three nights a week plus Sunday open mat. No contracts."
+>
   <section class="hero" aria-labelledby="hero-title">
     <div>
       <span class="eyebrow">Cary, North Carolina</span>
@@ -16,7 +19,7 @@ import { DUES } from '~/data/site';
       <a href="/visit" class="cta clay">Visit a class</a>
     </div>
     <div class="hero-image">
-      <Image src={whatleyHero} alt="Jon Whatley Sensei" widths={[600, 1200, 1800]} sizes="(min-width: 1024px) 50vw, 100vw" />
+      <Image src={whatleyHero} alt="Jon Whatley Sensei" widths={[600, 1200, 1800]} sizes="(min-width: 1024px) 50vw, 100vw" loading="eager" fetchpriority="high" />
       <span class="hero-image-label">Jon Whatley Sensei</span>
     </div>
   </section>
@@ -33,7 +36,7 @@ import { DUES } from '~/data/site';
         <h2 id="practice-title" class="section-title">Aikido is a <em>budo</em>, drawn from traditional Japanese arts.</h2>
         <div class="prose">
           <p>In Aikido we put great focus on movement, balance, posture, and your state of mind, and how this influences your connection with others. We look inwards to make changes in ourselves, so we can lead others to change.</p>
-          <p>Instruction is focused both on the basic principles of Aikido and their applications in technique. Above all, it is taught at your level of ability.</p>
+          <p>Instruction is focused both on the basic principles of Aikido and their applications in technique. Above all, it is taught at your level of ability. <a href="/about">Read more about our practice and instructors</a>.</p>
         </div>
       </div>
     </div>

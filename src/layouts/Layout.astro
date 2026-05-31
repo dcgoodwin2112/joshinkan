@@ -1,7 +1,10 @@
 ---
+import { getImage } from 'astro:assets';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
+import Schema from '~/components/Schema.astro';
 import { SITE } from '~/data/site';
+import ogSource from '~/assets/og-image.png';
 import '~/styles/main.css';
 
 interface Props {
@@ -13,6 +16,20 @@ const {
   title = SITE.title,
   description = SITE.description,
 } = Astro.props;
+
+// Process the OG image through Astro's image pipeline. Standard 1200×630
+// JPG at quality 85 — JPG (not WebP) because some social crawlers still
+// don't render WebP previews reliably.
+const og = await getImage({
+  src: ogSource,
+  width: 1200,
+  height: 630,
+  format: 'jpg',
+  quality: 85,
+});
+
+const canonicalUrl = new URL(Astro.url.pathname, SITE.url).toString();
+const ogImageUrl = new URL(og.src, SITE.url).toString();
 ---
 
 <!doctype html>
@@ -23,12 +40,35 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, SITE.url).toString()} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Joshinkan Dojo — Center for Aikido Study in Cary, North Carolina" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Joshinkan Dojo — Center for Aikido Study in Cary, North Carolina" />
+    <meta name="theme-color" content="#faf6ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0f13" media="(prefers-color-scheme: dark)" />
+    <meta name="geo.region" content="US-NC" />
+    <meta name="geo.placename" content="Cary" />
+    <meta name="geo.position" content="35.7885385;-78.8263641" />
+    <meta name="ICBM" content="35.7885385, -78.8263641" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Manrope:wght@300;400;500;600&display=swap" />
+    <Schema />
     <script is:inline>
       (function () {
         try {
