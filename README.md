@@ -69,5 +69,5 @@ How it works:
 ## Pre-launch checklist
 
 - [ ] `JSON-LD MartialArtsSchool` schema
-- [ ] Favicon
+- [x] Favicon
 - [ ] OG image
