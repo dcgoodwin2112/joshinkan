@@ -3,12 +3,12 @@
 // (a LocalBusiness subtype) so search engines / assistants understand the
 // site as a real-world place with hours, location, and contact info.
 // On /about, also emits Person entries for each instructor linked via
-// worksFor → @id of the MartialArtsSchool, so search engines model the
-// people relationship cleanly.
-// Drives entirely off ~/data/site.ts so a single edit there propagates here.
+// worksFor → @id of the MartialArtsSchool. On /visit, emits a FAQPage
+// covering the questions a prospective student typically asks. Drives
+// entirely off ~/data/site.ts so a single edit there propagates here.
 
 import { getCollection } from 'astro:content';
-import { SITE, CONTACT, SCHEDULE, LINKS } from '~/data/site';
+import { SITE, CONTACT, SCHEDULE, DUES, LINKS } from '~/data/site';
 import heroImage from '~/assets/whatley3.png';
 
 /** Convert "8:00 PM" → "20:00", "11:00 AM" → "11:00" (schema.org expects 24h). */
@@ -92,9 +92,71 @@ const persons = instructors.map((entry) => ({
     : {}),
 }));
 
+// FAQ schema on /visit — mirrors the prose Q&A on that page. Google
+// deprecated FAQ rich-result eligibility for most sites in 2023, but the
+// markup is still consumed by AI search (Claude, ChatGPT, Perplexity)
+// and other downstream tools.
+const onVisit = Astro.url.pathname === '/visit';
+const faqs = onVisit
+  ? [
+      {
+        '@type': 'Question',
+        name: 'How do I begin if I am new to Aikido?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Join for one month and attend as many classes as you can. You will be paired with an instructor who will work with you on basic movements and how to safely train. If after the introductory month you wish to continue, we set up your membership.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'I have trained Aikido before at another dojo. What should I do?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Please meet with Sensei Whatley about membership. If you are visiting the area and currently train at a dojo, you are most welcome to come visit us and train.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I wear?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Loose, comfortable clothing. A traditional dogi can be acquired once you decide to continue.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much are the monthly dues?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `$${DUES.monthly} per month. There are no contracts.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is there an introductory period?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Yes — ${DUES.introMonths} month. Attend as many classes as you can during the intro period.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Where is the dojo located?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${CONTACT.address.street}, ${CONTACT.address.cityStateZip} (${CONTACT.address.note}). Five minutes from downtown Cary, twenty from downtown Raleigh.`,
+        },
+      },
+    ]
+  : [];
+
+const faqPage = onVisit
+  ? [{ '@type': 'FAQPage', mainEntity: faqs }]
+  : [];
+
 const schema = {
   '@context': 'https://schema.org',
-  '@graph': [dojo, ...persons],
+  '@graph': [dojo, ...persons, ...faqPage],
 };
 ---
 
