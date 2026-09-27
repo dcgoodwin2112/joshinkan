@@ -14,8 +14,8 @@ export const CONTACT = {
     cityStateZip: 'Cary, NC 27513',
     note: "Inside Master Chang's Taekwondo",
   },
-  phone: '(919) 578-2990',
-  phoneTel: '+19195782990',
+  phone: '(919) 266-9980',
+  phoneTel: '+19192669980',
   email: 'centerforaikidostudy@gmail.com',
 };
 
